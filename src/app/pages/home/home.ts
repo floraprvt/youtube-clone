@@ -21,4 +21,8 @@ export class Home {
       this.videos.set(data.items);
     })
   }
+
+  onAdd(video: any) {
+    this.videoService.addVideoToPlaylist(video);
+  }
 }
