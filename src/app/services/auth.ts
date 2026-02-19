@@ -23,14 +23,12 @@ export class AuthService {
 
   register(credentials: RegisterData) {
     localStorage.setItem(CREDENTIALS_KEY, JSON.stringify(credentials));
-    this.router.navigate(['']);
-    window.location.reload();
+    this.router.navigate(['']).then(() => window.location.reload());
   }
 
   login(credentials: LoginData) {
     localStorage.setItem(CREDENTIALS_KEY, JSON.stringify(credentials));
-    this.router.navigate(['']);
-    window.location.reload();
+    this.router.navigate(['']).then(() => window.location.reload());
   }
 
   logout() {
