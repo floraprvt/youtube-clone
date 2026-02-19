@@ -11,8 +11,10 @@ const BASE_URL = 'https://www.googleapis.com/youtube/v3/search';
 export class Video {
   private http = inject(HttpClient);
 
-  fetchVideos(): Observable<any> {
-    return this.http.get(`${BASE_URL}?part=snippet&q=eni&type=video&key=${API_KEY}`);
+  fetchVideos(query: string): Observable<any> {
+    // console.log(query);
+    
+    return this.http.get(`${BASE_URL}?part=snippet&q=${query}&type=video&key=${API_KEY}`);
   }
 
 }

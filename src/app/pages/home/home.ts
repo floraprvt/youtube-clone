@@ -1,21 +1,24 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { Video } from '../../services/video';
+import { FormField } from '@angular/forms/signals';
 
 @Component({
   selector: 'app-home',
-  imports: [],
+  imports: [FormField],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
-export class Home implements OnInit {
+export class Home {
   private videoService = inject(Video);
 
-  videos: any[] = [];
+  searchQuery = signal<string>('');
 
-  ngOnInit(): void {
-    this.videoService.fetchVideos().subscribe((data) => {
+  videos = signal<any[]>([]);
+
+  onSearch() {
+    this.videoService.fetchVideos(this.searchQuery()).subscribe((data) => {
       console.log(data);
-      this.videos = data.items;
+      this.videos.set(data.items);
     })
   }
 }
