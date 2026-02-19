@@ -1,1 +1,8 @@
-<p>home works!</p>
+<div class="flex flex-wrap gap-8">
+@for (video of videos; track $index) {
+    <div>
+        <img [src]="video.snippet.thumbnails.high.url">
+        <p class="font-medium">{{ video.snippet.title }}</p>
+    </div>
+}
+</div>
