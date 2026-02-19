@@ -1,1 +1,42 @@
-<p>register works!</p>
+<h2 class="text-lg font-medium mb-5">Inscription</h2>
+
+<label class="block mb-5">
+    Nom d'utilisateur
+    <input type="text" [formField]="registerForm.username" class="mt-1"/>
+
+    @if (registerForm.username().touched() && registerForm.username().errors().length > 0) {
+    <div class="text-red-600">
+        @for (error of registerForm.username().errors(); track error) {
+        <p>{{ error.message }}</p>
+        }
+    </div>
+    }
+</label>
+
+<label class="block mb-5">
+    Email
+    <input type="email" [formField]="registerForm.email" class="mt-1"/>
+
+    @if (registerForm.email().touched() && registerForm.email().errors().length > 0) {
+    <div class="text-red-600">
+        @for (error of registerForm.email().errors(); track error) {
+        <p>{{ error.message }}</p>
+        }
+    </div>
+    }
+</label>
+
+<label class="block mb-5">
+    Mot de passe
+    <input type="password" [formField]="registerForm.password" class="mt-1" />
+
+    @if (registerForm.password().touched() && registerForm.password().errors().length > 0) {
+    <div class="text-red-600">
+        @for (error of registerForm.password().errors(); track error) {
+        <p>{{ error.message }}</p>
+        }
+    </div>
+    }
+</label>
+
+<button type="submit" class="button mt-" (click)="onSubmit()">S'inscrire</button>

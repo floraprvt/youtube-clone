@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginData } from '../types/auth';
+import { LoginData, RegisterData } from '../types/auth';
 
 const CREDENTIALS_KEY = 'credential';
 
@@ -13,6 +13,11 @@ export class AuthService {
   isAuth() {
     const isCredentials = localStorage.getItem(CREDENTIALS_KEY);
     return isCredentials;
+  }
+
+  register(credentials: RegisterData) {
+    localStorage.setItem(CREDENTIALS_KEY, JSON.stringify(credentials));
+    this.router.navigate(['']);
   }
 
   login(credentials: LoginData) {
