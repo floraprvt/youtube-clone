@@ -1,1 +1,27 @@
-<p>login works!</p>
+<label class="block mb-5">
+    Email
+    <input type="email" [formField]="loginForm.email" class="mt-1"/>
+
+    @if (loginForm.email().touched() && loginForm.email().errors().length > 0) {
+    <div class="text-red-600">
+        @for (error of loginForm.email().errors(); track error) {
+        <p>{{ error.message }}</p>
+        }
+    </div>
+    }
+</label>
+
+<label class="block mb-5">
+    Mot de passe
+    <input type="password" [formField]="loginForm.password" class="mt-1" />
+
+    @if (loginForm.password().touched() && loginForm.password().errors().length > 0) {
+    <div class="text-red-600">
+        @for (error of loginForm.password().errors(); track error) {
+        <p>{{ error.message }}</p>
+        }
+    </div>
+    }
+</label>
+
+<button type="submit" class="button mt-2" (click)="onSubmit()">Se connecter</button>

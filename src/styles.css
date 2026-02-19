@@ -7,10 +7,22 @@ app-root {
     flex-wrap: wrap;
 }
 
-router-outlet ~ * {
-    padding-left: 16rem;
+router-outlet~* {
+    padding: 2rem 4rem 2rem 20rem;
 }
 
-button {
+input {
+    display: block;
+    border: 1px black solid;
+    padding: 0.125rem 0.25rem;
+    border-radius: 6px;
+}
+
+.button {
     cursor: pointer;
+    background-color: black;
+    color: white;
+    padding: 0.325rem 1rem;
+    border-radius: 16px;
+    font-weight: 500;
 }
