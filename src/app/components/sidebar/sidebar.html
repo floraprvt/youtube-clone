@@ -1,21 +1,21 @@
 <aside class="min-h-screen w-3xs bg-slate-100 absolute p-4">
-    <section>
-        <h2>Mes informations</h2>
+    <section class="mb-10">
+        <h2 class="font-medium text-lg mb-1">Mes informations</h2>
         <ul>
-            <li>{{ user.username }}</li>
-            <li>{{ user.email }}</li>
+            <li class="text-sm">{{ user.username }}</li>
+            <li class="text-sm">{{ user.email }}</li>
         </ul>
     </section>
 
     <section>
-        <h2>Mes listes de lecture</h2>
+        <h2 class="font-medium text-lg mb-2">Ma liste de lecture</h2>
         <ul>
-            <li>
-                Première playlist
+            @for (video of playlist; track $index) {
+            <li class="w-32 mb-1">
+                <img [src]="video.snippet.thumbnails.default.url">
+                <p class="text-sm">{{ video.snippet.title }}</p>
             </li>
-            <li>
-                Deuxième playlist
-            </li>
+            }
         </ul>
     </section>
 </aside>

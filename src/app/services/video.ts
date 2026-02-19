@@ -18,6 +18,13 @@ export class Video {
     return this.http.get(`${BASE_URL}?part=snippet&q=${query}&type=video&key=${API_KEY}`);
   }
 
+  getPlaylist(): any[] {
+    const user = this.authService.getUser();
+
+    const storagePlaylist = localStorage.getItem(user.email);
+   return storagePlaylist ? JSON.parse(storagePlaylist) : [];
+  }
+
   addVideoToPlaylist(video: any) {
     const user = this.authService.getUser();
 
