@@ -9,7 +9,7 @@ import { AuthService } from '../../services/auth';
   styleUrl: './navbar.css',
 })
 export class Navbar {
-  private authService = inject(AuthService);
+  public authService = inject(AuthService);
 
   onLogout() {
     this.authService.logout();
