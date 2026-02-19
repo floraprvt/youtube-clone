@@ -2,9 +2,10 @@ import { Routes } from '@angular/router';
 import { Home } from './pages/home/home';
 import { Login } from './pages/login/login';
 import { Register } from './pages/register/register';
+import { authGuard } from './guards/auth-guard';
 
 export const routes: Routes = [
-    { path: '', component: Home },
+    { path: '', component: Home, canActivate: [authGuard] },
     { path: 'connexion', component: Login },
     { path: 'inscription', component: Register }
 ];
