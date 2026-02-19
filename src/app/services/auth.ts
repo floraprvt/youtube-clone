@@ -15,14 +15,22 @@ export class AuthService {
     return isCredentials;
   }
 
+  getUser() {
+    const user = localStorage.getItem(CREDENTIALS_KEY);
+    const parsedUser = user ? JSON.parse(user) : null
+    return parsedUser;
+  }
+
   register(credentials: RegisterData) {
     localStorage.setItem(CREDENTIALS_KEY, JSON.stringify(credentials));
     this.router.navigate(['']);
+    window.location.reload();
   }
 
   login(credentials: LoginData) {
     localStorage.setItem(CREDENTIALS_KEY, JSON.stringify(credentials));
     this.router.navigate(['']);
+    window.location.reload();
   }
 
   logout() {
