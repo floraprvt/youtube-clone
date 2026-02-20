@@ -32,7 +32,7 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.clear();
+    localStorage.removeItem(CREDENTIALS_KEY);
     window.location.reload();
   }
 }
