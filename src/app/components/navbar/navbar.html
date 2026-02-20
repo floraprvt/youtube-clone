@@ -1,10 +1,12 @@
-<nav class="p-4 bg-slate-950 text-gray-50 text-lg font-medium w-screen">
-    <h1>MyYoutube</h1>
+<nav class="p-4 bg-slate-950 text-gray-50 text-lg font-medium w-screen flex justify-between">
+    <a routerLink="/">MyYoutube</a>
 
-    @if (authService.isAuth()) {
-    <button (click)="onLogout()">Se déconnecter</button>
-    } @else {
-    <a routerLink="/inscription">S'inscrire | </a>
-    <a routerLink="/connexion">Se connecter</a>
-    }
+    <div>
+        @if (authService.isAuth()) {
+        <button (click)="onLogout()">Se déconnecter</button>
+        } @else {
+        <a routerLink="/inscription">S'inscrire | </a>
+        <a routerLink="/connexion">Se connecter</a>
+        }
+    </div>
 </nav>
