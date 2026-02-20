@@ -1,11 +1,13 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth';
-import { UserData } from '../../types/auth';
 import { Video } from '../../services/video';
+import { UserData } from '../../types/auth';
+import { VideoData } from '../../types/video';
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-sidebar',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './sidebar.html',
   styleUrl: './sidebar.css',
 })
@@ -14,7 +16,7 @@ export class Sidebar implements OnInit {
   private videoService = inject(Video);
 
   user: UserData = { email: '', password: '' };
-  playlist: any[] = []
+  playlist: VideoData[] = []
 
   ngOnInit(): void {
     this.user = this.authService.getUser();

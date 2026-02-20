@@ -1,11 +1,14 @@
-<input type="text" [value]="searchQuery()" (input)="searchQuery.set($event.target.value)" (change)="onSearch()" placeholder="Rechercher" class="w-200 m-auto mb-4"/>
+<input type="text" [value]="searchQuery()" (input)="searchQuery.set($event.target.value)" (change)="onSearch()"
+    placeholder="Rechercher" class="w-200 m-auto mb-4" />
 
 <div class="flex flex-wrap gap-8">
-@for (video of videos(); track $index) {
+    @for (video of videos(); track $index) {
     <div class="w-100">
-        <img [src]="video.snippet.thumbnails.high.url">
-        <p class="font-medium">{{ video.snippet.title }}</p>
+        <a [routerLink]="['/video', video.id.videoId]">
+            <img [src]="video.snippet.thumbnails.high.url">
+            <p class="font-medium">{{ video.snippet.title }}</p>
+        </a>
         <button class="button mt-2" (click)="onAdd(video)">Ajouter</button>
     </div>
-}
+    }
 </div>
