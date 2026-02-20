@@ -3,6 +3,7 @@ import { API_KEY } from '../../environment.js'
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.js';
+import { VideoData } from '../types/video.js';
 
 const BASE_URL = 'https://www.googleapis.com/youtube/v3/search';
 
@@ -18,14 +19,14 @@ export class Video {
     return this.http.get(`${BASE_URL}?part=snippet&q=${query}&type=video&key=${API_KEY}`);
   }
 
-  getPlaylist(): any[] {
+  getPlaylist(): VideoData[] {
     const user = this.authService.getUser();
 
     const storagePlaylist = localStorage.getItem(user.email);
    return storagePlaylist ? JSON.parse(storagePlaylist) : [];
   }
 
-  addVideoToPlaylist(video: any) {
+  addVideoToPlaylist(video: VideoData) {
     const user = this.authService.getUser();
 
     const storagePlaylist = localStorage.getItem(user.email);
@@ -41,7 +42,7 @@ export class Video {
     const storagePlaylist = localStorage.getItem(user.email);
     const playlist = storagePlaylist ? JSON.parse(storagePlaylist) : [];
 
-    const newPlaylist = playlist.filter((v: any) => v.id.videoId !== videoId);
+    const newPlaylist = playlist.filter((v: VideoData) => v.id.videoId !== videoId);
     localStorage.setItem(user.email, JSON.stringify(newPlaylist));
   }
 }
