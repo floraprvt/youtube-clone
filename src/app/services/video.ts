@@ -34,4 +34,14 @@ export class Video {
     playlist.push(video);
     localStorage.setItem(user.email, JSON.stringify(playlist));
   }
+
+  deleteVideoFromPlaylist(videoId: string) {
+    const user = this.authService.getUser();
+
+    const storagePlaylist = localStorage.getItem(user.email);
+    const playlist = storagePlaylist ? JSON.parse(storagePlaylist) : [];
+
+    const newPlaylist = playlist.filter((v: any) => v.id.videoId !== videoId);
+    localStorage.setItem(user.email, JSON.stringify(newPlaylist));
+  }
 }

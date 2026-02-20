@@ -11,9 +11,10 @@
         <h2 class="font-medium text-lg mb-2">Ma liste de lecture</h2>
         <ul>
             @for (video of playlist; track $index) {
-            <li class="w-32 mb-1">
+            <li class="w-30 mb-1 relative">
                 <img [src]="video.snippet.thumbnails.default.url">
                 <p class="text-sm">{{ video.snippet.title }}</p>
+                <button (click)="onDelete(video.id.videoId)" class="bg-slate-50 hover:bg-slate-200 rounded-full w-4 h-4 flex justify-center items-center absolute top-2 right-2 pb-1 cursor-pointer">x</button>
             </li>
             }
         </ul>

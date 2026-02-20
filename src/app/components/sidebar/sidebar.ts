@@ -20,4 +20,8 @@ export class Sidebar implements OnInit {
     this.user = this.authService.getUser();
     this.playlist = this.videoService.getPlaylist();
   }
+
+  onDelete(videoId: string) {
+    this.videoService.deleteVideoFromPlaylist(videoId);
+  }
 }

@@ -1,7 +1,7 @@
+<app-navbar></app-navbar>
 
-<div>
-  <app-navbar></app-navbar>
-  <app-sidebar></app-sidebar>
-</div>
+@if (authService.isAuth()) {
+<app-sidebar></app-sidebar>
+}
 
 <router-outlet />

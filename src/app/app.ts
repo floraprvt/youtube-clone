@@ -1,7 +1,8 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Navbar } from "./components/navbar/navbar";
 import { Sidebar } from "./components/sidebar/sidebar";
+import { AuthService } from './services/auth';
 
 @Component({
   selector: 'app-root',
@@ -10,5 +11,5 @@ import { Sidebar } from "./components/sidebar/sidebar";
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('youtube-clone');
+  public authService = inject(AuthService);
 }
