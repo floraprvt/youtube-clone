@@ -19,12 +19,12 @@ export class Home {
 
   onSearch() {
     this.videoService.fetchVideos(this.searchQuery()).subscribe((data) => {
-      console.log(data);
       this.videos.set(data.items);
     })
   }
 
   onAdd(video: VideoData) {
     this.videoService.addVideoToPlaylist(video);
+    this.videoService.emitPlaylistChange(this.videos());
   }
 }

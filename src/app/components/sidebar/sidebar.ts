@@ -15,6 +15,12 @@ export class Sidebar implements OnInit {
   private authService = inject(AuthService);
   private videoService = inject(Video);
 
+  constructor() {
+    this.videoService.changePlaylistEmitted.subscribe(() => {
+      this.playlist = this.videoService.getPlaylist();
+    })
+  }
+
   user: UserData = { email: '', password: '' };
   playlist: VideoData[] = []
 
@@ -25,5 +31,6 @@ export class Sidebar implements OnInit {
 
   onDelete(videoId: string) {
     this.videoService.deleteVideoFromPlaylist(videoId);
+    this.playlist = this.videoService.getPlaylist();
   }
 }

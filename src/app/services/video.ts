@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { API_KEY } from '../../environment.js'
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { AuthService } from './auth.js';
 import { VideoData } from '../types/video.js';
 
@@ -15,6 +15,9 @@ export class Video {
 
   private authService = inject(AuthService);
 
+  private emitPlaylistChangeSource = new Subject<any>();
+  changePlaylistEmitted = this.emitPlaylistChangeSource.asObservable();
+
   fetchVideos(query: string): Observable<any> {
     return this.http.get(`${BASE_URL}?part=snippet&q=${query}&type=video&key=${API_KEY}`);
   }
@@ -23,7 +26,11 @@ export class Video {
     const user = this.authService.getUser();
 
     const storagePlaylist = localStorage.getItem(user.email);
-   return storagePlaylist ? JSON.parse(storagePlaylist) : [];
+    return storagePlaylist ? JSON.parse(storagePlaylist) : [];
+  }
+
+  emitPlaylistChange(change: VideoData[]) {
+    this.emitPlaylistChangeSource.next(change);
   }
 
   addVideoToPlaylist(video: VideoData) {
